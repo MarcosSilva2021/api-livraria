@@ -22,5 +22,5 @@ public class Livro implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "autor_id")
-    private String autor;
+    private Autor autor;
 }

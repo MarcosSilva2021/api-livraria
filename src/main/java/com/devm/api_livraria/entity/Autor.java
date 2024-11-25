@@ -21,7 +21,7 @@ public class Autor implements Serializable {
     private Long id;
     private String nome;
 
-    @OneToMany
+    @OneToMany(mappedBy = "autor")
     private List<Livro> livros = new ArrayList<>();
 
     public Autor(Long id, String nome) {

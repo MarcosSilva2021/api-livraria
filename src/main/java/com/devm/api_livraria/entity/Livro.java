@@ -19,5 +19,8 @@ public class Livro implements Serializable {
     private Long id;
 
     private String nome;
-    //private String autor;
+
+    @ManyToOne
+    @JoinColumn(name = "autor_id")
+    private String autor;
 }

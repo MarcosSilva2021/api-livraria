@@ -3,6 +3,7 @@ package com.devm.api_livraria.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 
 @AllArgsConstructor
@@ -22,5 +23,6 @@ public class Livro implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "autor_id")
+    @JsonBackReference  // Impede a serialização recursiva do autor no livro
     private Autor autor;
 }

@@ -7,11 +7,12 @@ import com.devm.api_livraria.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
-//import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Profile;
 
 import java.util.Arrays;
 
 @Configuration
+@Profile("test")
 public class TestConfig implements CommandLineRunner {
     // povoa o banco com objetos de autor e livro
     @Autowired
@@ -22,14 +23,18 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Autor a1 = new Autor(null, "David Autos");
-        Autor a2 = new Autor(null, "David Baixos");
+        // Verificando se os autores já existem para evitar duplicação
+        if (autorRepository.count() == 0) {
+            Autor a1 = new Autor(null, "David Autos");
+            Autor a2 = new Autor(null, "David Baixos");
 
-        autorRepository.saveAll(Arrays.asList(a1, a2));
+            autorRepository.saveAll(Arrays.asList(a1, a2));
 
-        Livro l1 = new Livro(null, "O mágico de OZ", a1);
-        Livro l2 = new Livro(null, "Codigo Limpo", a2);
+            // Criando livros para os autores
+            Livro l1 = new Livro(null, "O Mágico de Oz", a1);
+            Livro l2 = new Livro(null, "Código Limpo", a2);
 
-        livroRepository.saveAll(Arrays.asList(l1, l2));
+            livroRepository.saveAll(Arrays.asList(l1, l2));
+        }
     }
 }

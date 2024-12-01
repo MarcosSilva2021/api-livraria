@@ -1,5 +1,6 @@
 package com.devm.api_livraria.entity;
 
+import com.devm.api_livraria.dto.UsuarioDeRegistro;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,7 +29,9 @@ public class Usuario implements Serializable {
     }
 
     public Usuario(UsuarioDeRegistro usuarioDeRegistro){
-       //TODO
+        this.nome = usuarioDeRegistro.nome();
+        this.email = usuarioDeRegistro.email();
+        this.senha = usuarioDeRegistro.senha();
     }
 
     @Override

@@ -16,9 +16,12 @@ public class UsuarioService {
 
     private UsuarioRepository repository;
 
+    private JWTService service;
+
     @Autowired
-    public UsuarioService(UsuarioRepository repository) {
+    public UsuarioService(UsuarioRepository repository, JWTService service) {
         this.repository = repository;
+        this.service = service;
     }
 
     public Usuario cadastrarUsuario(UsuarioDeRegistro usuarioDeRegistro){
@@ -36,7 +39,7 @@ public class UsuarioService {
     }
 
     private boolean usuarioTemPermissao(String header, String email){
-        String sujeitoDoToken = "já já voltamos pessoal";
+        String sujeitoDoToken = service.pegaSujeitoPeloToken(header);
         Optional<Usuario> usuarioRetornado = repository.findByEmail(sujeitoDoToken);
         return usuarioRetornado.isPresent() && usuarioRetornado.get().getEmail().equals(email);
     }

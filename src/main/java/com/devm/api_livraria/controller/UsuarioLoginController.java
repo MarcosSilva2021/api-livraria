@@ -6,6 +6,7 @@ import com.devm.api_livraria.dto.UsuarioToken;
 import com.devm.api_livraria.entity.Usuario;
 import com.devm.api_livraria.service.JWTService;
 import com.devm.api_livraria.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,12 @@ public class UsuarioLoginController {
 
     private UsuarioService usuarioService;
     private JWTService jwtService;
+
+    @Autowired
+    public UsuarioLoginController(UsuarioService usuarioService, JWTService jwtService) {
+        this.usuarioService = usuarioService;
+        this.jwtService = jwtService;
+    }
 
     @PostMapping(value = "/registro")
     public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody UsuarioDeRegistro usuarioDeRegistro){

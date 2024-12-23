@@ -16,12 +16,12 @@
   - Pesquisar por id;
   - Pesquisar todos;
   - Apagar.
-- Além de um usuario admin. 
+- Além de um usuario do sistema. 
 
 ## Descrição técnica
 - API em spring Boot
 - DTO
-- Usuário admin com autenticação e autorização JDK
+- Usuário com autenticação e autorização com Token JDK
 
 ## Diagrama de classes
 
@@ -60,14 +60,16 @@ classDiagram
 
 ## Estrutura de pacotes do projeto
 
-| Pacote     | Descrição                                    |
-|------------|----------------------------------------------|
-| controller | Classes que gerenciam as requisições da API  | 
-| model      | Entidades do domínio da aplicação            |
-| repository | Inteface de acesso a base de dados           |
-| service    | Classes com regras de negócio                |
-| config     | Classes de dados de testes para popular o BD |
-| exception  | Classes trata os erros do sistema            |
-| dto        | Classes exibe informações básicas do usuário |
-
+| Pacote     | Descrição                                         |
+|------------|---------------------------------------------------|
+| controller | Classes que gerenciam as requisições da API       | 
+| model      | Entidades do domínio da aplicação                 |
+| repository | Inteface de acesso a base de dados                |
+| service    | Classes com regras de negócio                     |
+| Testconfig | Classes de dados de testes para popular o BD      |
+| exception  | Classes trata os erros do sistema                 |
+| dto        | Classes exibe informações básicas da classe       |
+| JWTConfig  | Classes com um FiltroDoToken) p aplica em rotas   |
+| Filter     | valida a presença e a integridade de um token JWT | 
+ 
 
